@@ -9,9 +9,12 @@ const App = () => {
     { title: "Car Insurance", amount: 294.67, date: new Date(2021, 2, 28) },
     { title: "Car Insurance", amount: 294.67, date: new Date(2021, 2, 28) },
   ];
+  const addExpenseDataHandler = (enteredExpenseData) => {
+    console.log(enteredExpenseData);
+  };
   return (
     <>
-      <NewExpense></NewExpense>
+      <NewExpense onAddExpense={addExpenseDataHandler}></NewExpense>
       <Card className="App">
         <ExpenseItem
           name={expenses[0].title}
