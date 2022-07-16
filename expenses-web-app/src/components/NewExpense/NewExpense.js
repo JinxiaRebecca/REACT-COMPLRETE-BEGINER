@@ -6,9 +6,8 @@ const NewExpense = (props) => {
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData,
-      id: Math.random().toString(),
+      id: (Math.random() * 100).toString(),
     };
-    console.log("receive value from children:" + expenseData);
     props.onAddExpense(expenseData);
   };
   return (

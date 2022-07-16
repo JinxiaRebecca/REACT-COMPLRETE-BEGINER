@@ -1,28 +1,26 @@
 import "./App.css";
-import Card from "./components/UI/Card";
-import ExpenseItem from "./components/expenses/ExpenseItem";
 import NewExpense from "./components/NewExpense/NewExpense";
+import Expenses from "./components/expenses/Expenses";
+import { useState } from "react";
 
+const initialExpenses = [
+  { id: '1', title: "Car Insurance", amount: 294.67, date: new Date(2021, 2, 28) },
+  { id: '2', title: "Car Insurance", amount: 294.67, date: new Date(2021, 2, 28) },
+  { id: '3', title: "Car Insurance", amount: 294.67, date: new Date(2021, 2, 28) },
+];
 const App = () => {
-  const expenses = [
-    { title: "Car Insurance", amount: 294.67, date: new Date(2021, 2, 28) },
-    { title: "Car Insurance", amount: 294.67, date: new Date(2021, 2, 28) },
-    { title: "Car Insurance", amount: 294.67, date: new Date(2021, 2, 28) },
-  ];
+  const [expenses, addExpenses] = useState(initialExpenses);
+
   const addExpenseDataHandler = (enteredExpenseData) => {
-    console.log(enteredExpenseData);
+    addExpenses((preExpenses) => {
+      return [enteredExpenseData, ...preExpenses];
+    });
   };
   return (
-    <>
+    <div>
       <NewExpense onAddExpense={addExpenseDataHandler}></NewExpense>
-      <Card className="App">
-        <ExpenseItem
-          name={expenses[0].title}
-          amount={expenses[0].amount}
-          date={expenses[0].date}
-        ></ExpenseItem>
-      </Card>
-    </>
+      <Expenses items={expenses} />
+    </div>
   );
 };
 
